@@ -20,7 +20,13 @@ import {
   updateJob,
   deleteJob,
 } from "../controllers/PostsController.js"; // Ubah ke named import
-
+import {
+  getAllComments,
+  createComment,
+  getCommentById,
+  updateComment,
+  deleteComment,
+} from "../controllers/Komen.js"
 const router = express.Router();
 
 //auth
@@ -45,4 +51,9 @@ router.post("/profile", saveProfil)
 router.patch("/profile/:id", updateProfil)
 router.delete("/profile/:id", deleteProfil)
 
+router.get("/comments", getAllComments);
+router.post("/comments", verifyToken, createComment);
+router.get("/comments/:id", getCommentById);
+router.put("/comments/:id", verifyToken, updateComment);
+router.delete("/comments/:id", verifyToken, deleteComment);
 export default router;
